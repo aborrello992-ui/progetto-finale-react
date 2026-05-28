@@ -22,6 +22,15 @@ navigate(`/search/${search.trim()}`)
         <Link className="text-2xl font-bold text-primary" to={routes.home}>
           Rehacktor
         </Link>
+        <div className="flex gap-3">
+  <Link className="btn btn-ghost" to={routes.login}>
+    Login
+  </Link>
+
+  <Link className="btn btn-primary" to={routes.register}>
+    Registrati
+  </Link>
+</div>
 
        <form className="flex gap-2" onSubmit={handleSearch}>
   <input

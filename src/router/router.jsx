@@ -5,6 +5,8 @@ import SearchPage from "../views/SearchPage.jsx";
 import GenrePage from "../views/GenrePage.jsx";
 import DetailPage from "../views/DetailPage.jsx";
 import routes from "./routes.js";
+import LoginPage from '../views/auth/LoginPage.jsx'
+import RegisterPage from '../views/auth/RegisterPage.jsx'
 import {
   getCurrentYearGames,
   getSearchedGames,
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         element: <DetailPage />,
         loader: getGameDetail,
       },
+      {
+  path: routes.login,
+  element: <LoginPage />,
+},
+{
+  path: routes.register,
+  element: <RegisterPage />,
+},
     ],
   },
 ]);
