@@ -1,15 +1,17 @@
-import { createBrowserRouter } from 'react-router-dom'
-import Layout from '../layouts/Layout.jsx'
-import Homepage from '../views/Homepage.jsx'
-import SearchPage from '../views/SearchPage.jsx'
-import GenrePage from '../views/GenrePage.jsx'
-import routes from './routes.js'
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "../layouts/Layout.jsx";
+import Homepage from "../views/Homepage.jsx";
+import SearchPage from "../views/SearchPage.jsx";
+import GenrePage from "../views/GenrePage.jsx";
+import DetailPage from "../views/DetailPage.jsx";
+import routes from "./routes.js";
 import {
   getCurrentYearGames,
   getSearchedGames,
   getGenres,
   getGamesByGenre,
-} from './loaders.js'
+  getGameDetail,
+} from "./loaders.js";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +34,14 @@ const router = createBrowserRouter([
         element: <GenrePage />,
         loader: getGamesByGenre,
       },
+
+      {
+        path: routes.detail,
+        element: <DetailPage />,
+        loader: getGameDetail,
+      },
     ],
   },
-])
+]);
 
-export default router
+export default router;
