@@ -10,10 +10,12 @@ function Layout() {
     <>
       <Navbar />
 
-      <div className="mx-auto grid w-11/12 max-w-6xl gap-6 py-6 lg:grid-cols-[220px_1fr] lg:py-8">
+      <div className="mx-auto grid w-11/12 max-w-6xl min-w-0 gap-6 py-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:py-8">
         <Sidebar genres={genres} />
 
-        <Outlet />
+        <main className="min-w-0">
+          <Outlet />
+        </main>
       </div>
 
       <Footer />

@@ -80,14 +80,14 @@ function ProfilePage() {
       : 'https://placehold.co/200x200?text=Avatar')
 
   return (
-    <section className="mx-auto flex min-h-[70vh] w-11/12 max-w-4xl flex-col gap-6 py-8 sm:py-16">
+    <section className="mx-auto flex min-h-[70vh] w-full max-w-4xl flex-col gap-6 py-8 sm:py-16">
       <div className="rounded-lg bg-base-100 p-4 shadow sm:p-8">
         <h1 className="mb-6 text-2xl font-bold sm:text-3xl">Profilo utente</h1>
 
         {user ? (
           <>
-            <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-start">
-              <div className="flex w-full flex-col items-start gap-4 md:w-auto">
+            <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="flex w-full flex-col items-start gap-4 md:max-w-sm">
                 <img
                   className="h-28 w-28 rounded-full object-cover"
                   src={avatarUrl}
@@ -108,7 +108,7 @@ function ProfilePage() {
                 </form>
               </div>
 
-              <div className="space-y-3 break-words">
+              <div className="w-full space-y-3 break-words md:max-w-md">
                 <p>
                   <strong>Email:</strong> {user.email}
                 </p>
