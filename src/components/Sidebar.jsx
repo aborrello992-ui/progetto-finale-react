@@ -2,15 +2,13 @@ import { Link } from 'react-router-dom'
 
 function Sidebar({ genres }) {
   return (
-    <aside className="bg-base-100 p-4">
-      <h2 className="mb-4 text-xl font-bold">
-        Generi
-      </h2>
+    <aside className="rounded-lg bg-base-100 p-4 shadow-sm lg:sticky lg:top-4 lg:h-fit">
+      <h2 className="mb-4 text-xl font-bold">Generi</h2>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:gap-2 lg:overflow-visible lg:pb-0">
         {genres.map((genre) => (
           <Link
-            className="link-hover text-base-content/80"
+            className="link-hover whitespace-nowrap text-base-content/80"
             key={genre.id}
             to={`/genre/${genre.slug}`}
           >

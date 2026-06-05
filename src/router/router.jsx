@@ -1,4 +1,9 @@
+
+import FavoritesPage from '../views/FavoritesPage.jsx'
+import ProtectedRoute from '../components/ProtectedRoute.jsx'
+import ProfilePage from '../views/ProfilePage.jsx'
 import { createBrowserRouter } from "react-router-dom";
+import AuthLayout from '../layouts/AuthLayout.jsx'
 import Layout from "../layouts/Layout.jsx";
 import Homepage from "../views/Homepage.jsx";
 import SearchPage from "../views/SearchPage.jsx";
@@ -43,13 +48,36 @@ const router = createBrowserRouter([
         loader: getGameDetail,
       },
       {
-  path: routes.login,
-  element: <LoginPage />,
-},
-{
-  path: routes.register,
-  element: <RegisterPage />,
-},
+        path: routes.profile,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+          
+        ),
+      },
+      {
+        path: routes.favorites,
+        element: (
+          <ProtectedRoute>
+            <FavoritesPage />
+          </ProtectedRoute>
+          
+        ),
+      }
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: routes.login,
+        element: <LoginPage />,
+      },
+      {
+        path: routes.register,
+        element: <RegisterPage />,
+      },
     ],
   },
 ]);

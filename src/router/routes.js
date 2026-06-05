@@ -5,6 +5,8 @@ const routes = {
   detail: "/games/:id",
   login: '/auth/login',
 register: '/auth/register',
+profile: '/profile',
+favorites: '/preferiti',
 };
 
 export default routes;

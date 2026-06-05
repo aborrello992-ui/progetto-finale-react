@@ -1,4 +1,7 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { useUserContext } from '../../context/UserContext.jsx'
+import supabase from '../../database/supabase.js'
 
 function RegisterPage() {
   const {
@@ -6,14 +9,47 @@ function RegisterPage() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  const navigate = useNavigate()
+  const { setUser, getProfile } = useUserContext()
 
-  function onSubmit(data) {
-    console.log(data)
+  async function onSubmit(data) {
+    const { data: registerData, error } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        data: {
+          username: data.username,
+          first_name: data.first_name,
+          last_name: data.last_name,
+        },
+      },
+    })
+
+    if (error) {
+      console.log(error.message)
+      return
+    }
+
+    const { error: profileError } = await supabase.from('profiles').insert({
+      id: registerData.user.id,
+      username: data.username,
+      first_name: data.first_name,
+      last_name: data.last_name,
+    })
+
+    if (profileError) {
+      console.log(profileError.message)
+      return
+    }
+
+    setUser(registerData.user)
+    getProfile(registerData.user.id)
+    navigate('/')
   }
 
   return (
-    <main className="min-h-screen bg-base-200 py-16">
-      <section className="mx-auto w-11/12 max-w-md">
+    <section className="bg-base-200 py-8 sm:py-16">
+      <div className="mx-auto w-11/12 max-w-md">
         <div className="card bg-base-100 shadow-sm">
           <div className="card-body">
             <h1 className="card-title text-3xl">Registrazione</h1>
@@ -22,7 +58,7 @@ function RegisterPage() {
               <label className="form-control">
                 <span className="label-text mb-2">Username</span>
                 <input
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   type="text"
                   placeholder="Scegli uno username"
                   {...register('username', {
@@ -34,16 +70,14 @@ function RegisterPage() {
                   })}
                 />
                 {errors.username && (
-                  <span className="text-sm text-error">
-                    {errors.username.message}
-                  </span>
+                  <span className="text-sm text-error">{errors.username.message}</span>
                 )}
               </label>
 
               <label className="form-control">
                 <span className="label-text mb-2">Nome</span>
                 <input
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   type="text"
                   placeholder="Inserisci il tuo nome"
                   {...register('first_name', {
@@ -55,16 +89,14 @@ function RegisterPage() {
                   })}
                 />
                 {errors.first_name && (
-                  <span className="text-sm text-error">
-                    {errors.first_name.message}
-                  </span>
+                  <span className="text-sm text-error">{errors.first_name.message}</span>
                 )}
               </label>
 
               <label className="form-control">
                 <span className="label-text mb-2">Cognome</span>
                 <input
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   type="text"
                   placeholder="Inserisci il tuo cognome"
                   {...register('last_name', {
@@ -76,16 +108,14 @@ function RegisterPage() {
                   })}
                 />
                 {errors.last_name && (
-                  <span className="text-sm text-error">
-                    {errors.last_name.message}
-                  </span>
+                  <span className="text-sm text-error">{errors.last_name.message}</span>
                 )}
               </label>
 
               <label className="form-control">
                 <span className="label-text mb-2">Email</span>
                 <input
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   type="email"
                   placeholder="Inserisci la tua email"
                   {...register('email', {
@@ -97,16 +127,14 @@ function RegisterPage() {
                   })}
                 />
                 {errors.email && (
-                  <span className="text-sm text-error">
-                    {errors.email.message}
-                  </span>
+                  <span className="text-sm text-error">{errors.email.message}</span>
                 )}
               </label>
 
               <label className="form-control">
                 <span className="label-text mb-2">Password</span>
                 <input
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   type="password"
                   placeholder="Scegli una password"
                   {...register('password', {
@@ -118,9 +146,7 @@ function RegisterPage() {
                   })}
                 />
                 {errors.password && (
-                  <span className="text-sm text-error">
-                    {errors.password.message}
-                  </span>
+                  <span className="text-sm text-error">{errors.password.message}</span>
                 )}
               </label>
 
@@ -130,8 +156,8 @@ function RegisterPage() {
             </form>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   )
 }
 
