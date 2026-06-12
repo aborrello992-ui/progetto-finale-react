@@ -6,9 +6,9 @@ function GenrePage() {
   const { slug } = useParams()
 
   return (
-    <main className="min-h-screen bg-base-200 py-16">
-      <section className="mx-auto w-11/12 max-w-6xl">
-        <h1 className="mb-6 text-4xl font-bold">
+    <main className="min-h-screen bg-[#0d1110] py-6 text-emerald-50 sm:py-10">
+      <section>
+        <h1 className="mb-6 text-3xl font-black sm:text-5xl">
           Genere: {slug}
         </h1>
 

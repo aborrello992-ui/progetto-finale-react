@@ -4,4 +4,56 @@
 body {
   margin: 0;
   overflow-x: hidden;
+  background: #0d1110;
+  color: #ecfdf5;
+}
+
+html {
+  background: #0d1110;
+  color-scheme: dark;
+}
+
+.bg-base-100 {
+  background-color: #171d1b !important;
+  color: #ecfdf5 !important;
+}
+
+.bg-base-200 {
+  background-color: #0d1110 !important;
+  color: #ecfdf5 !important;
+}
+
+.bg-base-300 {
+  background-color: #111715 !important;
+  color: #ecfdf5 !important;
+}
+
+.text-base-content\/70 {
+  color: rgb(236 253 245 / 0.7) !important;
+}
+
+.input,
+.textarea,
+.file-input {
+  background-color: rgb(255 255 255 / 0.06) !important;
+  border-color: rgb(16 185 129 / 0.25) !important;
+  color: #ecfdf5 !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgb(236 253 245 / 0.45) !important;
+}
+
+.btn-primary {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #04130f !important;
+}
+
+.btn-secondary,
+.btn-error {
+  background-color: #f43f5e !important;
+  border-color: #f43f5e !important;
+  color: white !important;
 }
